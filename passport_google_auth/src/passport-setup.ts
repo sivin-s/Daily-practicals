@@ -32,12 +32,12 @@ passport.use(new GoogleStrategy(
     }
 ))
 
-// serialize user into session
+// serialize user into session ->  'write the user to session' -> state
 passport.serializeUser((user, done) => {
     done(null, user)
 })
 
-// deserialize user from session
+// deserialize user from session -> 'read the user from session'
 passport.deserializeUser((user, done) => {
     done(null, user as Express.User)
 })

@@ -8,5 +8,8 @@ declare global {
             emails?: { value: string }[];
             photos?: { value: string }[];
         }
+        // interface User{
+        //     isVerified: boolean
+        // }
     }
 }

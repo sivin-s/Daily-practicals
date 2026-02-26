@@ -13,6 +13,7 @@ app.use(
         resave: false,
         saveUninitialized: false,
         cookie: {
+            httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             maxAge: 1000 * 60 * 60 * 24 // 24 hours
         }
@@ -21,7 +22,7 @@ app.use(
 
 
 // 2. passport middleware
-app.use(passport.initialize())
+app.use(passport.initialize()) 
 app.use(passport.session()) // retrieving(restoring) the session data from the session store.
 
 // Define the api router
@@ -80,7 +81,7 @@ apiRouter.get('/logout', (req, res, next) => {
 // Router
 app.use('/api', apiRouter)
 
-// Error first Middleware -> next(err) -> first argument -> err
+// Error first Middleware -> next(err) -> first argument -> err (centralized error catcher)
 app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
     // console.error("Global Error Handler caught:", err.stack);
     console.error("Global Error Handler caught:", err.message);
