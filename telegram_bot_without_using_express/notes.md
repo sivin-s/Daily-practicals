@@ -1,0 +1,1 @@
+Webhook = https://api.telegram.org/bot<BOT_TOKEN>/setWebhook?url=https://<your-app>.vercel.app/api/bot
