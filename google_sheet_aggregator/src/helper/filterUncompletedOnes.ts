@@ -28,9 +28,9 @@ const rows = data.slice(1)
 const heading = data.slice(0,1).flat().slice(2);
 
 
-let reshapedData  = rows.map((row,i)=>{
+let reshapedData  = rows.map((row:any,i)=>{
     // row, inside more one column
-   const tasks =  row.slice(2).map((col,j)=>{
+   const tasks =  row.slice(2).map((col:any,j)=>{
          return {[heading[j]!] : col}
     })
     return {
