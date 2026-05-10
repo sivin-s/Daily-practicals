@@ -129,3 +129,128 @@ console.log(freq)
 console.log(res)
 
 */
+
+
+/*
+  Q, Find the maximum sum of any contiguous subarray of size k.
+  const nums = [2, 1, 5, 1, 3, 2];
+const k = 3;
+let wSum = 0
+let maxSum = 0;
+for(let i=0;i<k;i++){
+   wSum += nums[i];
+}
+maxSum = wSum;
+for(let i=k;i<nums.length;i++){
+    # Notice:: newWindowSum = oldWindowSum - elementLeaving + elementEntering
+    wSum = (wSum - nums[i-k]) + nums[i];
+    maxSum = Math.max(maxSum, wSum)
+}
+console.log(wSum,maxSum)
+*/
+
+/*
+  Q,  Find the length of the longest substring without repeating character.
+const str = "abcabcbb";
+let longestSub = 0;
+const set = new Set();
+for(let s=0;s<str.length;s++){
+    for(let e=s;e<str.length;e++){
+            console.log(set)
+           if(set.has(str[e])){
+               break;
+           }else{
+               set.add(str[e])
+           }
+    }
+    longestSub = Math.max(longestSub,set.size)
+}
+console.log(longestSub);
+const str = "abcabcbb";
+let longestLengthOfString = 0;
+let startOfWindow = 0;
+let currentOfWindow = 0;
+const  characterSet = new Set();
+while(currentOfWindow < str.length){
+    if(characterSet.has(str[currentOfWindow])){
+        characterSet.delete(str[startOfWindow++])
+    }else{
+        characterSet.add(str[currentOfWindow++]);
+    }
+    longestLengthOfString = Math.max(longestLengthOfString,characterSet.size)
+}
+
+console.log(longestLengthOfString)
+*/
+
+/*
+ Q, Rotate the array to the right by k steps in place.
+const nums = [1, 2, 3, 4, 5];
+const k = 2;
+for(let i=0;i<k;i++){
+   nums.unshift(nums.pop()) 
+}
+console.log(nums)
+## space complexity 2nd method
+
+function reverse(start,end){
+   console.log(end)
+   while(start < end){
+     [nums[start],nums[end]] = [nums[end],nums[start]];
+      start++;
+      end--;
+   }
+}
+reverse(0,nums.length-1) // reverse entire array
+console.log(nums)
+reverse(0,k-1)  // reverse first k elements
+reverse(k,nums.length-1) // reverse the remaining elements(from k to end)
+console.log(nums)
+
+*/
+
+/*
+  Q, Transform this array into an object where each id is the key;
+  const students = [
+  { id: 1, name: "Alice", grade: 85 },
+  { id: 2, name: "Bob", grade: 92 },
+  { id: 3, name: "Charlie", grade: 78 }
+];
+const obj = {}
+for(const ele of students){
+    obj[ele.id] = {name: ele.name, grade: ele.grade}  
+}
+console.log(obj)
+const students = [
+  { id: 1, name: "Alice", grade: 85 },
+  { id: 2, name: "Bob", grade: 92 },
+  { id: 3, name: "Charlie", grade: 78 }
+];
+const res = students.reduce((acc,cu)=>{
+   acc[cu.id] = {name:cu.name,grade:cu.grade}
+   return acc;
+},{})
+console.log(res)
+*/
+
+/*
+  // Task: Using a single chain — filter only in-stock items,
+//  apply a 10% discount to their price, and
+//  return an array of strings like:
+const inventory = [
+  { product: "laptop", price: 999, inStock: true },
+  { product: "phone", price: 499, inStock: false },
+  { product: "tablet", price: 299, inStock: true },
+  { product: "watch", price: 199, inStock: false }
+];
+  ####
+  100%-10% = 90%;
+  90/100= 0.9 -> ratio
+   discount = price * 0.9
+  ###
+
+ const res = inventory.filter((cu)=> cu.inStock)
+     .map((cu)=> `${cu.product}: $${(cu.price*0.9).toFixed(2)}`)
+ console.log(res)
+
+*/
