@@ -254,3 +254,159 @@ const inventory = [
  console.log(res)
 
 */
+
+/*
+ Q, Flatten a Nested Array
+   const nested = [1, [2, 3], [4, [5, 6]], [7, [8, [9]]]];
+function flat(nested,temp=[]){
+    for(const ele of nested){
+        if(Array.isArray(ele)){
+            flat(ele,temp)
+        }else{
+             temp.push(ele)
+        }
+    }
+    return temp;
+}
+console.log(flat(nested))
+or
+const flat = (arr) => arr.reduce((acc, cu) => 
+    Array.isArray(cu) ? acc.concat(flat(cu)) : [...acc, cu]
+, []);
+*/
+
+/*
+Q,  Deep Object Comparison.
+const obj1 = { name: "Alice", address: { city: "NY", zip: "10001" }};
+const obj2 = { name: "Alice", address: { city: "NY", zip: "10001" } };
+
+ console.log(JSON.stringify(obj1)===JSON.stringify(obj2))
+
+function deepEqual (obj1,obj2){
+    ## Notice it checking only deep(case of object nested) it not related to keys names.
+    ## check the any of the params is primitive; (to skip primitive value)
+   if(typeof obj1 !== 'object' || typeof obj2 !== 'object'){
+       return obj1 === obj2;
+   }
+   ## same keys
+   if(Object.keys(obj1).length === Object.keys(obj2).length){
+      return true;
+   }
+   
+   for(const key of Object.keys(obj1)){
+       if(!deepEqual(obj1[key],obj2[key])){
+         return false;
+       }
+   }
+   return true;
+   
+}
+const res = deepEqual(obj1,obj2)
+console.log(res)
+*/
+
+/*
+  // Q, Task: Return the most frequent character. Ignore spaces.
+const str = "hello world";
+const freq = {};
+for(const char of str){
+    if(char === ' ') continue;
+    freq[char] = (freq[char] || 0) + 1
+}
+let max = 0;
+let char = ''
+for(const [key,value] of Object.entries(freq)){
+    if(value > max){
+        max = value;
+        char = key
+    }
+}
+console.log(max,freq,char)
+*/
+
+/*
+  ## Q, Task: Capitalize the first letter of every word.
+const str = "Hello World this is JavaScript";
+let res = ''
+for(const word of str.split(' ')){
+    res += word.at(0).toUpperCase() + word.substring(1) + " ";
+}
+console.log(res)
+
+*/
+
+/*
+  # Q, Task: Remove all duplicates and return only numbers that appear exactly once.
+const nums = [1, 2, 2, 3, 4, 4, 5, 5, 5];
+const freq={};
+for(const ele of nums){
+    freq[ele] = ( freq[ele] || 0 ) + 1;
+}
+let res = Object.entries(freq).filter(([k,v])=> v === 1).map((cu)=> parseInt(cu));
+console.log(res)
+*/
+
+/*
+# Task: Find the most frequent word in the sentence.
+const sentence = "the cat sat on the mat by the cat";
+const freq = new Map();
+for(const word of sentence.split(' ')){
+    freq.set(word,(freq.get(word)||0)+1)
+}
+let max = 0;
+let word = ''
+freq.forEach((v,k)=>{
+    console.log(v,k)
+     if(v > max){
+        max= v;
+        word= k;
+     }
+})
+console.log(word)
+*/
+
+/*
+ # Task: The array is sorted. Find the index of target using binary search.
+const nums = [1, 3, 5, 7, 9, 11];
+const target = 9;
+function binarySearch(nums,target,left=0,right=nums.length-1){
+    if(left > right) return -1; // base case and guarding out bound index;
+    const mid  = Math.floor((left+right)/2);
+    if(nums[mid] === target){
+        return mid;
+    }
+    if(target < nums[mid]){
+        return binarySearch(nums,target,left,mid-1);
+    }else{
+        return binarySearch(nums,target,mid+1,right);
+    }
+}
+console.log(binarySearch(nums,target))
+
+*/
+
+/*
+  Task: In a single chain:
+
+Keep only active users
+Sort them by score descending
+Return only their names
+
+Expected output: ["Diana", "Alice", "Charlie"]
+
+const users = [
+  { id: 1, name: "Alice", active: true, score: 85 },
+  { id: 2, name: "Bob", active: false, score: 92 },
+  { id: 3, name: "Charlie", active: true, score: 78 },
+  { id: 4, name: "Diana", active: true, score: 95 },
+  { id: 5, name: "Eve", active: false, score: 88 }
+];
+const reShapedData = users.filter((cu)=> cu.active)
+                  .sort((a,b)=> b.score-a.score)
+                  .map((cu)=> cu.name)
+console.log(reShapedData)
+*/
+
+/*
+
+*/

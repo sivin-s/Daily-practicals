@@ -148,18 +148,6 @@ class SingleLinkedList{
      }
      return false;
    }
-   mergeSortedLists(l1,l2){
-      const dummy = new Node(0);
-      let cur = dummy;
-      while(l1 && l2){
-        cur.next = new Node(l1.data);
-        cur.next.next = new Node(l2.data);
-        l1 = l1.next;
-        l2  = l2.next;
-        cur = cur.next.next;
-      }
-      return dummy;
-   }
    removeNthFromEnd(n){
       const dummy = new Node(0);
       dummy.next = this.head;
@@ -174,6 +162,35 @@ class SingleLinkedList{
       }
      slow.next = slow.next.next;
      this.head = dummy.next;
+   }
+    isPalindrome(){
+    // middle node
+    let slow = this.head;
+    let fast = this.head;
+    while(fast && fast.next){
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+    // reverse half
+    let prev = null;  // 1->2->3 <> 3->2->1->null 
+    let cur = slow;
+    while(cur){
+      let next = cur.next // tmp;
+      cur.next = prev;
+      prev = cur;
+      cur = next;
+    }
+   //  compare both halves;
+   let left = this.head;
+   let right = prev;
+   while(right){// why i use right. no.of in the right short
+      if(left.data !== right.data){
+         return false;
+      }
+      left = left.next;
+      right = right.next;
+   }
+   return true;
    }
 }
 
